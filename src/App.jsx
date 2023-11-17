@@ -4,8 +4,9 @@ import {
   Routes,
   Route
 } from 'react-router-dom';
-import Home from './pages/Home';
+import Home from './Pages/Home';
 import CreateUser from './Pages/CreateUser';
+import UpdateUser from './pages/UpdateUser';
 
 function App() {
 
@@ -14,6 +15,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/create" element={<CreateUser />} />
+        <Route path="/edit/:id" element={<UpdateUser />} />
       </Routes>
     </HashRouter>
   )
