@@ -5,6 +5,7 @@ import {
   Route
 } from 'react-router-dom';
 import Home from './pages/Home';
+import CreateUser from './Pages/CreateUser';
 
 function App() {
 
@@ -12,6 +13,7 @@ function App() {
     <HashRouter>
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/create" element={<CreateUser />} />
       </Routes>
     </HashRouter>
   )
