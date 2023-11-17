@@ -1,6 +1,7 @@
-import { useParams } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
 import { useState } from "react";
+import { updateUser } from '../store/slices/user.slice';
 
 const UpdateUser = () => {
     
@@ -12,11 +13,27 @@ const UpdateUser = () => {
     const [updateName, setUpdateName] = useState(name);
     const [newEmail, setNewEmail] = useState(email);
 
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+    const handleUpdate = e => {
+        e.preventDefault();
+
+        // Update user from reducer
+        dispatch(updateUser({ 
+            id: Number(id),
+            name: updateName,
+            email: newEmail
+        }))
+
+        navigate('/')
+    }
+
     return (
         <div className="d-flex w-100 vh-100 justify-content-center align-items-center">
             <div className="w-50 border bg-secondary text-white p-5">
                 <h2>Update User</h2>
-                <form /* onSubmit={handleSubmit} */>
+                <form onSubmit={handleUpdate}>
                     <div>
                         <label htmlFor="name">Name:</label>
                         <input type="text" name="name" className="form-control" placeholder="enter name" value={updateName} onChange={e => setUpdateName(e.target.value)}/>
