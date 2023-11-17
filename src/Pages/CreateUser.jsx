@@ -1,13 +1,28 @@
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { addUser } from '../store/slices/user.slice';
+import { useNavigate } from 'react-router-dom'
 
 const CreateUser = () => {
-
+    
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
+
+    const users = useSelector(state => state.users);
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const handleSubmit = e => {
         e.preventDefault();
         
+        // Send new user to reducer = payload
+        dispatch(addUser({
+            id: users[users.length - 1].id + 1,
+            name,
+            email
+        }))
+
+        navigate('/')
     }
 
     return (
